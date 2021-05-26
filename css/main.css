@@ -1,0 +1,402 @@
+.panel {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	opacity: 0;
+	transition: opacity 0.15s ease 0s;
+	z-index: -1;
+}
+
+.panel.active {
+	z-index: 1;
+	opacity: 1;
+}
+
+.chunk {
+	width: 66%;
+}
+
+.block .title {
+	width: 100%;
+	border-radius: 0.25rem;
+	margin: 0 0 0.5rem 0;
+}
+
+.block .title h2 {
+	color: rgba(255, 255, 255, 0.45);
+	font-weight: 400;
+	font-size: 0.8rem;
+	line-height: 2;
+	text-align: left;
+	margin: 0;
+}
+
+.block .content {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+	grid-gap: 1rem;
+}
+
+.content .app {
+	color: var(--white);
+	background-size: 1.25rem;
+	background-repeat: no-repeat;
+	text-decoration: none;
+	display: inline-block;
+	box-sizing: border-box;
+	background-position: left 0.5rem center;
+	padding: 0.5rem 0.5rem 0.5rem 2.5rem;
+	border-radius: 0.5rem;
+	transition: background-color 0.3s ease 0s;
+}
+
+.content .app:hover {
+	background-color: var(--dark);
+}
+
+.content .app p {
+	font-size: 1.1rem;
+	font-weight: 600;
+	line-height: 1;
+	color: var(--white);
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.content .app span {
+	color: var(--light);
+	font-size: 0.8rem;
+	transition: color 0.3s ease 0s;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.content .app:hover span {
+	color: white;
+}
+
+
+
+
+.chunk.search {
+	margin-top: 5rem;
+}
+
+.search form {
+	width: 100%;
+	display: flex;
+	border: solid 0.25rem rgba(255, 255, 255, 0.1);
+	border-radius: 0.25rem;
+	box-shadow: 0 0 0.25rem black;
+}
+
+.search input {
+	background-color: rgba(0, 0, 0, 0);
+	line-height: 2.5rem;
+	flex: 1;
+	border: medium none;
+	color: white;
+	font-size: 1.25rem;
+	padding: 0 0.5rem;
+}
+
+.search button {
+	background-color: rgb(41, 41, 41);
+	width: 4rem;
+	border: medium none;
+	color: white;
+	font-weight: 900;
+	cursor: pointer;
+	transition: background-color 0.3s ease 0s, border-left 0.3s ease 0s;
+	border-left: solid 1px rgba(255, 255, 255, 0.1);
+	font-size: 1.1rem;
+	position: relative;
+}
+
+.search button:nth-child(2) {
+	border-left: solid 1px rgba(255, 255, 255, 0);
+}
+
+.search button:hover, .search button:focus {
+	background-color: rgb(65, 65, 65);
+	border-left: solid 1px rgba(255, 255, 255, 0);
+	transform: scale(1.5);
+	z-index: 5;
+	box-shadow: 0 0 0.25rem black;
+	border-radius: 0.25rem;
+}
+
+.search button p {
+	line-height: 2.5rem;
+	margin: 0 0 -0.25rem 0;
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	transition: line-height 0.15s ease 0s;
+}
+
+.search button:hover p, .search button:focus p {
+	line-height: 1.5rem;
+}
+
+.search button span {
+	font-weight: 700;
+	font-size: 0.5rem;
+	line-height: 1.25rem;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	color: rgba(255, 255, 255, 0.57);
+	opacity: 0;
+	transition: opacity 0.15s ease 0s;
+}
+
+.search button:hover span, .search button:focus span {
+	opacity: 1;
+}
+
+
+
+
+
+.system {
+	margin: 5rem 0 0 0;
+}
+
+.system .content {
+	display: flex;
+	justify-content: space-between;
+}
+
+.system .label {
+	padding: 0.25rem 0.5rem;
+	background-color: rgba(255, 255, 255, 0.1);
+	border-radius: 0.25rem;
+	color: white;
+	box-shadow: 0 0 0.25rem black;
+	flex: 1;
+	margin: 0 0 0 1rem;
+}
+
+.system .label.big {
+	flex: 2;
+}
+
+.system .label:first-child {
+	margin: 0;
+}
+
+.system .label .title {
+	display: flex;
+}
+
+.system .label .title h4 {
+	font-weight: 400;
+	font-size: 0.8rem;
+	color: rgba(255, 255, 255, 0.48);
+}
+
+.system .label .title span {
+	color: rgb(255, 25, 255);
+	text-align: right;
+	flex: 1;
+	font-weight: 600;
+	font-size: 0.85rem;
+	text-shadow: 0 0 0.1rem black;
+}
+
+.system .label .body {
+	display: flex;
+	margin-top: 0.5rem;
+}
+
+.system .label .body span {
+	flex: 1;
+}
+
+.system .label .body p {
+	font-weight: 600;
+}
+
+.system .label .body p em {
+	font-weight: 100;
+	margin: 0 0.25rem 0 1.5rem;
+	font-size: 0.75rem;
+	font-style: normal;
+	color: rgba(255, 255, 255, 0.48);
+}
+
+.system .footnote {
+	margin: 1rem 0;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-gap: 1rem;
+}
+
+.system .footnote p {
+	color: rgba(255, 255, 255, 0.48);
+	font-size: 0.8rem;
+	text-align: center;
+	background-color: rgba(255, 255, 255, 0.1);
+	border-radius: 0.25rem;
+	box-shadow: 0 0 0.25rem black;
+	padding: 0.25rem;
+}
+
+
+
+
+.applications .application {
+	background-color: rgba(255, 255, 255, 0.1);
+	border-radius: 0.25rem;
+	display: flex;
+	box-shadow: 0 0 0.25rem black;
+	padding: 0.25rem;
+	align-items: center;
+	cursor: pointer;
+}
+
+.applications .application .icon {
+	min-width: 2.75rem;
+	max-width: 2.75rem;
+	background-size: 50%;
+	background-repeat: no-repeat;
+	background-position: center;
+	display: block;
+	height: 2.75rem;
+}
+
+.applications .application svg {
+	min-width: 1.25rem;
+	max-width: 1.25rem;
+	display: block;
+	height: 1.25rem;
+	margin: 0.5rem;
+}
+
+.applications .application .body {
+	flex: 1;
+	padding: 0.25rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.applications .application .body p {
+	font-weight: 600;
+	line-height: 1.25;
+}
+
+.applications .application .body span {
+	font-size: 0.8rem;
+	color: rgba(255, 255, 255, 0.48);
+	line-height: 1.25;
+	font-weight: 600;
+}
+
+.applications .application .indicator {
+	height: 100%;
+}
+
+.applications .application .indicator p {
+	min-width: 0.5rem;
+	max-width: 0.5rem;
+	min-height: 0.5rem;
+	max-height: 0.5rem;
+	background-color: rgba(255, 255, 255, 0);
+	margin: 0.25rem;
+	border-radius: 500px;
+    transition: background-color 0.3s ease 0s;
+}
+
+.applications .application .indicator p.online {
+    background-color: rgb(100, 250, 100);
+}
+
+.applications .application .indicator p.offline {
+	background-color: rgb(250, 50, 50);
+}
+
+
+
+
+.chunk.bookmarks {
+	margin: 5rem 0 0 0;
+}
+
+.bookmarks .content {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-gap: 3rem;
+}
+
+.bookmarks .team {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmarks .team h4 {
+	color: rgba(255, 255, 255, 0.45);
+	font-weight: 700;
+	font-size: 0.7rem;
+	border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+	margin: 0 0 0.25rem 0;
+	text-transform: uppercase;
+}
+
+.bookmarks .team a {
+	font-size: 0.9rem;
+	line-height: 1.5;
+	color: rgba(255, 255, 255, 0.6);
+	transition: color 0.15s ease 0s, border-bottom 0.15s ease 0s;
+	border-bottom: solid 1px rgba(255, 255, 255, 0);
+}
+
+.bookmarks .team a:hover {
+	color: white;
+	border-bottom: dashed 1px rgba(255, 255, 255, 0.1);
+}
+
+
+
+
+.jokes p {
+	color: rgba(255, 255, 255, 0.6);
+	font-size: 0.8rem;
+	font-weight: 600;
+	padding: 0.25rem 0;
+}
+
+
+
+
+a.gotoSettings {
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
+	width: 2rem;
+	height: 2rem;
+	background-size: 50%;
+	background-repeat: no-repeat;
+	background-position: center;
+	opacity: 0.5;
+	z-index: 10;
+	border-radius: 0.25rem;
+	transition: opacity 0.3s ease 0s, background-color 0.3s ease 0s, box-shadow 0.3s ease 0s;
+}
+
+a.gotoSettings:hover {
+	opacity: 1;
+	background-color: rgba(255, 255, 255, 0.1);
+	box-shadow: 0 0 0.25rem black;
+}

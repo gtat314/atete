@@ -1,0 +1,45 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Open Sans', sans-serif;
+	text-decoration: none;
+	color: white;
+    scrollbar-color: #aaa #111;
+	scrollbar-width: thin;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+*:focus {
+    outline: none;
+}
+
+:root {
+	--white: #eee;
+	--green: rgb(100, 200, 100);
+	--red: rgb(250, 50, 50);
+	--dark: #333;
+	--black: #111;
+	--light: #666;
+	--blue: rgb(100, 200, 255);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+   background-color: #111;
+}
+
+::-webkit-scrollbar-thumb {
+   background-color: #aaa;
+}
+
+body {
+	background-color: var(--black);
+}
