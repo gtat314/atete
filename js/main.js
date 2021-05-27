@@ -125,7 +125,6 @@ function clbk_populateMetrics( resp ) {
     document.querySelector( '.systemPercSwap' ).textContent     = percSwap + '%';
     document.querySelector( '.systemSwap' ).textContent         = response.swapUsed + ' MB';
     document.querySelector( '.systemIp' ).textContent           = 'External Ip: ' + response.ip;
-    document.querySelector( '.systemKernel' ).textContent       = 'Kernel: ' + response.kernel;
     document.querySelector( '.systemUptime' ).textContent       = 'Uptime: ' + response.uptime;
     document.querySelector( '.systemCpu' ).textContent          = cpuUsed + '%';
 
@@ -137,6 +136,17 @@ function clbk_populateMetrics( resp ) {
 
         document.querySelector( '.systemName' ).style.display   = 'block';
         document.querySelector( '.systemName' ).textContent     = response.name + ' ' + response.version;
+
+    }
+
+    if ( response.kernel === null ) {
+
+        document.querySelector( '.systemKernel' ).style.display = 'none';
+
+    } else {
+
+        document.querySelector( '.systemKernel' ).style.display   = 'block';
+        document.querySelector( '.systemKernel' ).textContent     = 'Kernel: ' + response.kernel;
 
     }
 

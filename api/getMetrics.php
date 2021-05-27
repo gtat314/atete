@@ -128,13 +128,21 @@ if ( $releaseRaw !== null ) {
 
 
 
-$unameRaw = system( '/usr/bin/uname -r', $unameResult );
+$response[ 'kernel' ] = null;
 
-if ( $unameResult === 0 && strlen( $unameRaw ) > 0 ) {
+exec( 'command -v uname', $unameOutput, $unameReturnCode );
 
-    $response[ 'kernel' ] = $unameRaw;
+if ( $unameReturnCode === 0 ) {
 
-}
+    $unameRaw = system( $unameOutput[ 0 ] . ' -r', $unameResult );
+
+    if ( $unameResult === 0 && strlen( $unameRaw ) > 0 ) {
+
+        $response[ 'kernel' ] = $unameRaw;
+
+    }
+
+} 
 
 
 
