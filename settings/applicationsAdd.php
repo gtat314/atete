@@ -10,6 +10,8 @@
     </head>
     <body>
 
+        <?php require $_SERVER[ 'DOCUMENT_ROOT' ] . '/inc/menu.inc.php'; ?>
+
         <div class="content">
 
             <div class="pageTitle">
@@ -68,7 +70,7 @@
             <hr>
 
             <div class="buttons">
-                <a class="cancel" href="/settings/applications.html">Cancel</a>
+                <a class="cancel" href="/settings/applications.php">Cancel</a>
                 <button>Add</button>
             </div>
 

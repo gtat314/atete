@@ -239,9 +239,7 @@
 
 .system .footnote {
 	margin: 1rem 0;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-	grid-gap: 1rem;
+	display: flex;
 }
 
 .system .footnote p {
@@ -252,6 +250,16 @@
 	border-radius: 0.25rem;
 	box-shadow: 0 0 0.25rem black;
 	padding: 0.25rem;
+	flex: 1;
+	margin: 0 0.5rem;
+}
+
+.system .footnote p:first-child {
+	margin: 0 0.5rem 0 0;
+}
+
+.system .footnote p:last-child {
+	margin: 0 0 0 0.5rem;
 }
 
 

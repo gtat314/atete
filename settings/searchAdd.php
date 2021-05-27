@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="el-gr">
     <head>
-        <title>Edit Application - Atete</title>
+        <title>Add Search Engine - Atete</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/css/icons.css">
@@ -10,16 +10,18 @@
     </head>
     <body>
 
+        <?php require $_SERVER[ 'DOCUMENT_ROOT' ] . '/inc/menu.inc.php'; ?>
+
         <div class="content">
 
             <div class="pageTitle">
-                <h1>Edit Application</h1>
-                <p>Edit the appearance or information about a specific application</p>
+                <h1>Add New Search Engine</h1>
+                <p>Add a new search engine for the main page</p>
             </div>
 
             <hr>
 
-            <form class="formEditApplication">
+            <form class="formAddNewApplication">
 
             <div class="inputText js_inputTitle">
                 <div class="body">
@@ -68,8 +70,8 @@
             <hr>
 
             <div class="buttons">
-                <a class="cancel" href="/settings/applications.html">Cancel</a>
-                <button>Update</button>
+                <a class="cancel" href="/settings/search.php">Cancel</a>
+                <button>Add</button>
             </div>
 
             <form>

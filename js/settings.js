@@ -149,278 +149,49 @@ function dom_validateApplicationForm() {
 
 function dom_menu() {
 
-    var sidebar = lib_createElement({
-        tag: 'DIV',
-        classes: [ 'sidebar' ],
-        parent: document.body,
-        insertBefore: document.querySelector( '.content' )
-    });
-
-    var logo = lib_createElement({
-        tag: 'DIV',
-        classes: [ 'logo' ],
-        parent: sidebar
-    });
-
-    lib_createElement({
-        tag: 'H1',
-        text: 'Atete',
-        parent: logo
-    });
-
-    lib_createElement({
-        tag: 'SPAN',
-        text: '0.0.0.0.0.1 pre-alpha',
-        parent: logo
-    });
-
-    lib_createElement({
-        tag: 'HR',
-        parent: sidebar
-    });
-
-    var itemSearch = lib_createElement({
-        tag: 'A',
-        classes: [ 'item' ],
-        href: '/settings/search.html',
-        parent: sidebar
-    });
-
-    var bodySearch = lib_createElement({
-        tag: 'DIV',
-        classes: [ 'body' ],
-        parent: itemSearch
-    });
-
-    var titleSearch = lib_createElement({
-        tag: 'DIV',
-        classes: [ 'title' ],
-        parent: bodySearch
-    });
-
-    lib_createElement({
-        tag: 'SPAN',
-        classes: [ 'icon', 'search' ],
-        parent: titleSearch
-    });
-
-    lib_createElement({
-        tag: 'H2',
-        text: 'Search',
-        parent: titleSearch
-    });
-
-    lib_createElement({
-        tag: 'P',
-        text: 'Add or remove search engines',
-        parent: bodySearch
-    });
-
-    lib_createElement({
-        tag: 'HR',
-        parent: sidebar
-    });
-
-    var itemJokes = lib_createElement({
-        tag: 'A',
-        classes: [ 'item' ],
-        href: '/settings/jokes.html',
-        parent: sidebar
-    });
-
-    var bodyJokes = lib_createElement({
-        tag: 'DIV',
-        classes: [ 'body' ],
-        parent: itemJokes
-    });
-
-    var titleJokes = lib_createElement({
-        tag: 'DIV',
-        classes: [ 'title' ],
-        parent: bodyJokes
-    });
-
-    lib_createElement({
-        tag: 'SPAN',
-        classes: [ 'icon', 'laugh' ],
-        parent: titleJokes
-    });
-
-    lib_createElement({
-        tag: 'H2',
-        text: 'Jokes',
-        parent: titleJokes
-    });
-
-    lib_createElement({
-        tag: 'P',
-        text: 'Show or hide jokes and change the api settings',
-        parent: bodyJokes
-    });
-
-    lib_createElement({
-        tag: 'HR',
-        parent: sidebar
-    });
-
-    var itemMetrics = lib_createElement({
-        tag: 'A',
-        classes: [ 'item' ],
-        href: '/settings/metrics.html',
-        parent: sidebar
-    });
-
-    var bodyMetrics = lib_createElement({
-        tag: 'DIV',
-        classes: [ 'body' ],
-        parent: itemMetrics
-    });
-
-    var titleMetrics = lib_createElement({
-        tag: 'DIV',
-        classes: [ 'title' ],
-        parent: bodyMetrics
-    });
-
-    lib_createElement({
-        tag: 'SPAN',
-        classes: [ 'icon', 'metrics' ],
-        parent: titleMetrics
-    });
-
-    lib_createElement({
-        tag: 'H2',
-        text: 'Metrics',
-        parent: titleMetrics
-    });
-
-    lib_createElement({
-        tag: 'P',
-        text: 'Show cpu load, memory consumption and system temperature',
-        parent: bodyMetrics
-    });
-
-    lib_createElement({
-        tag: 'HR',
-        parent: sidebar
-    });
-
-    var itemApplications = lib_createElement({
-        tag: 'A',
-        classes: [ 'item' ],
-        href: '/settings/applications.html',
-        parent: sidebar
-    });
-
-    var bodyApplications = lib_createElement({
-        tag: 'DIV',
-        classes: [ 'body' ],
-        parent: itemApplications
-    });
-
-    var titleApplications = lib_createElement({
-        tag: 'DIV',
-        classes: [ 'title' ],
-        parent: bodyApplications
-    });
-
-    lib_createElement({
-        tag: 'SPAN',
-        classes: [ 'icon', 'applications' ],
-        parent: titleApplications
-    });
-
-    lib_createElement({
-        tag: 'H2',
-        text: 'Applications',
-        parent: titleApplications
-    });
-
-    lib_createElement({
-        tag: 'P',
-        text: 'Add or remove web apps which will be periodically monitored',
-        parent: bodyApplications
-    });
-
-    lib_createElement({
-        tag: 'HR',
-        parent: sidebar
-    });
-
-    var itemBookmarks = lib_createElement({
-        tag: 'A',
-        classes: [ 'item' ],
-        href: '/settings/bookmarks.html',
-        parent: sidebar
-    });
-
-    var bodyBookmarks = lib_createElement({
-        tag: 'DIV',
-        classes: [ 'body' ],
-        parent: itemBookmarks
-    });
-
-    var titleBookmarks = lib_createElement({
-        tag: 'DIV',
-        classes: [ 'title' ],
-        parent: bodyBookmarks
-    });
-
-    lib_createElement({
-        tag: 'SPAN',
-        classes: [ 'icon', 'bookmarks' ],
-        parent: titleBookmarks
-    });
-
-    lib_createElement({
-        tag: 'H2',
-        text: 'Bookmarks',
-        parent: titleBookmarks
-    });
-
-    lib_createElement({
-        tag: 'P',
-        text: 'Add shortcuts to frequently visited websites',
-        parent: bodyBookmarks
-    });
-
-    lib_createElement({
-        tag: 'HR',
-        parent: sidebar
-    });
-
-    var back = lib_createElement({
-        tag: 'A',
-        classes: [ 'back' ],
-        href: '/',
-        parent: sidebar
-    });
-
-    var backBody = lib_createElement({
-        tag: 'DIV',
-        classes: [ 'body' ],
-        parent: back
-    });
-
-    lib_createElement({
-        tag: 'SPAN',
-        classes: [ 'icon', 'leftArrow' ],
-        parent: backBody
-    });
-
-    lib_createElement({
-        tag: 'P',
-        text: 'home',
-        parent: backBody
-    });
-
     if (
-        window.location.pathname === '/settings/applications.html' ||
-        window.location.pathname === '/settings/applicationsAdd.html' ||
-        window.location.pathname === '/settings/applicationsEdit.html'
+
+        window.location.pathname === '/settings/applications.php' ||
+        window.location.pathname === '/settings/applicationsAdd.php' ||
+        window.location.pathname === '/settings/applicationsEdit.php'
+
     ) {
 
-        itemApplications.classList.add( 'active' );
+        document.querySelector( '.sidebar .item.applications' ).classList.add( 'active' );
+
+    } else if (
+
+        window.location.pathname === '/settings/search.php' ||
+        window.location.pathname === '/settings/searchAdd.php' ||
+        window.location.pathname === '/settings/searchEdit.php'
+
+    ) {
+
+        document.querySelector( '.sidebar .item.search' ).classList.add( 'active' );
+
+    } else if (
+
+        window.location.pathname === '/settings/jokes.php'
+
+    ) {
+
+        document.querySelector( '.sidebar .item.jokes' ).classList.add( 'active' );
+
+    } else if (
+
+        window.location.pathname === '/settings/metrics.php'
+
+    ) {
+
+        document.querySelector( '.sidebar .item.metrics' ).classList.add( 'active' );
+
+    } else if (
+
+        window.location.pathname === '/settings/bookmarks.php'
+
+    ) {
+
+        document.querySelector( '.sidebar .item.bookmarks' ).classList.add( 'active' );
 
     }
 
@@ -555,7 +326,7 @@ function evt_clickApplication( evt ) {
 
     sessionStorage.setItem( 'editApplication', evt.currentTarget.getAttribute( 'data-index' ) );
 
-    window.location.href = '/settings/applicationsEdit.html';
+    window.location.href = '/settings/applicationsEdit.php';
 
 }
 

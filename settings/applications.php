@@ -10,6 +10,8 @@
     </head>
     <body>
 
+        <?php require $_SERVER[ 'DOCUMENT_ROOT' ] . '/inc/menu.inc.php'; ?>
+
         <div class="content">
 
             <div class="pageTitle">
@@ -24,7 +26,7 @@
             <hr>
 
             <div class="buttons">
-                <a href="/settings/applicationsAdd.html">Add New</a>
+                <a href="/settings/applicationsAdd.php">Add New</a>
             </div>
 
         </div>

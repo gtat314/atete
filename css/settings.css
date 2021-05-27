@@ -408,3 +408,23 @@ body {
 	color: rgba(255, 255, 255, 0.48);
 	font-weight: 400;
 }
+
+
+
+
+.maintenance {
+	width: 100%;
+	height: calc(100vh - 6rem);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.maintenance p {
+	text-align: center;
+	font-size: 1.1rem;
+	font-weight: 900;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	color: rgba(255, 255, 255, 0.45);
+}

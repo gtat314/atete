@@ -125,10 +125,20 @@ function clbk_populateMetrics( resp ) {
     document.querySelector( '.systemPercSwap' ).textContent     = percSwap + '%';
     document.querySelector( '.systemSwap' ).textContent         = response.swapUsed + ' MB';
     document.querySelector( '.systemIp' ).textContent           = 'External Ip: ' + response.ip;
-    document.querySelector( '.systemName' ).textContent         = response.name + ' ' + response.version;
     document.querySelector( '.systemKernel' ).textContent       = 'Kernel: ' + response.kernel;
     document.querySelector( '.systemUptime' ).textContent       = 'Uptime: ' + response.uptime;
     document.querySelector( '.systemCpu' ).textContent          = cpuUsed + '%';
+
+    if ( response.name === null || response.version === null ) {
+
+        document.querySelector( '.systemName' ).style.display = 'none';
+
+    } else {
+
+        document.querySelector( '.systemName' ).style.display   = 'block';
+        document.querySelector( '.systemName' ).textContent     = response.name + ' ' + response.version;
+
+    }
 
 }
 

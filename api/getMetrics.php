@@ -23,7 +23,7 @@ if ( $outputTop === null ) {
 
 
 
-if ( preg_match_all('/.*Cpu.*?(\S+)\.\d\s+id,/', $outputTop, $output_array) === 1 ) {
+if ( preg_match_all('/.*Cpu.*?(\d+)\.\d\s+id,/', $outputTop, $output_array) === 1 ) {
 
     if ( count( $output_array ) === 2 ) {
 
@@ -105,19 +105,19 @@ if ( $ipRaw !== null && preg_match('/(\d+\.\d+\.\d+\.\d+)/', $ipRaw, $ipOutput) 
 
 
 
-if ( file_exists( '/etc/os-release' ) === true ) {
+$response[ 'name' ]     = null;
+$response[ 'version' ]  = null;
+$releaseRaw             = shell_exec( 'cat /etc/*release' );
 
-    $nameRaw = system( '/usr/bin/cat /etc/os-release | grep NAME | head -1', $nameResult );
+if ( $releaseRaw !== null ) {
 
-    if ( $nameResult === 0 && preg_match('/NAME=(.*)/', $nameRaw, $nameOutput) === 1 ) {
+    if ( preg_match('/NAME=(.*)/', $releaseRaw, $nameOutput) === 1 ) {
 
         $response[ 'name' ] = $nameOutput[ 1 ];
 
     }
 
-    $versionRaw = system( '/usr/bin/cat /etc/os-release | grep VERSION | head -1', $versionResult );
-
-    if ( $versionResult === 0 && preg_match('/VERSION=(.*)/', $versionRaw, $versionOutput) === 1 ) {
+    if ( preg_match('/VERSION=(.*)/', $releaseRaw, $versionOutput) === 1 ) {
 
         $response[ 'version' ] = $versionOutput[ 1 ];
 
