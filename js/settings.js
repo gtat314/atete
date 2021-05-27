@@ -38,7 +38,7 @@ function ls_addApplication( avatarName ) {
 
     setTimeout( function(){
 
-        window.location.href = '/settings/applications.html';
+        window.location.href = '/settings/applications.php';
 
     }, 500);
 
@@ -86,7 +86,7 @@ function ls_editApplication( avatarName ) {
 
     setTimeout( function(){
 
-        window.location.href = '/settings/applications.html';
+        window.location.href = '/settings/applications.php';
 
     }, 500);
 
