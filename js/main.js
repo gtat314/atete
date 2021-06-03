@@ -69,11 +69,44 @@ function dom_application( data ) {
 
 }
 
+function dom_searchEngine( data ) {
+
+    var parentElem = document.querySelector( '.search .searchEngines' );
+
+    var button = lib_createElement({
+        tag: 'BUTTON',
+        title: "Search with " + data.t,
+        dataAttrs: {
+            searchquery: data.u
+        },
+        listeners: [
+            {
+                type: 'click',
+                callback:evt_buttonSearch
+            }
+        ],
+        parent: parentElem
+    });
+
+    lib_createElement({
+        tag: 'P',
+        text: data.l,
+        parent: button
+    });
+
+    lib_createElement({
+        tag: 'SPAN',
+        text: data.t,
+        parent: button
+    });
+
+}
+
 function evt_submitSearch( evt ) {
 
     evt.preventDefault();
 
-    var primaryEngineElem = searchForm.querySelectorAll( 'button' )[ 0 ];
+    var primaryEngineElem = document.querySelectorAll( '.search form button' )[ 0 ];
 
     clbk_search( primaryEngineElem );
 
@@ -83,7 +116,7 @@ function evt_buttonSearch( evt ) {
 
     evt.preventDefault();
 
-    var engineElem = evt.currentTarget;
+    var engineElem = evt.currentTarget; console.log( evt.currentTarget );
 
     clbk_search( engineElem );
 
@@ -93,11 +126,11 @@ function evt_buttonSearch( evt ) {
 
 function clbk_search( elem ) {
 
-    var inputElem = searchForm.querySelector( 'input' );
+    var inputElem = document.querySelector( '.search form input' );
 
     var engineQuery = elem.getAttribute( 'data-searchquery' );
 
-    var url = engineQuery.replace( '||query||', encodeURIComponent( inputElem.value ) );
+    var url = engineQuery.replace( '%query%', encodeURIComponent( inputElem.value ) );
 
     window.open( url );
 
@@ -205,21 +238,23 @@ function clbk_populateApplications( resp ) {
 
 }
 
-function init_search() {
+function clbk_populateSearchEngines() {
 
-    searchForm = document.querySelector( '.chunk.search form' );
+    var data                = JSON.parse( localStorage.getItem( 'data' ) );
+    var searchEnginesNum    = data.searchEngines.length;
+    var parentElem          = document.querySelector( '.search .searchEngines' );
 
-    var buttons = searchForm.querySelectorAll( 'button' );
+    while ( parentElem.firstChild ) {
 
-    var buttonsnNum = buttons.length;
-
-    for ( var i = 0 ; i < buttonsnNum ; i++ ) {
-
-        buttons[ i ].addEventListener( 'click', evt_buttonSearch );
+        parentElem.firstChild.remove();
 
     }
 
-    searchForm.addEventListener( 'submit', evt_submitSearch );
+    for ( var i = 0 ; i < searchEnginesNum ; i++ ) {
+
+        dom_searchEngine( data.searchEngines[ i ] );
+
+    }
 
 }
 
@@ -307,7 +342,10 @@ function ajax_data() {
 
             init_apps();
 
-        }
+            clbk_populateSearchEngines();
+
+        },
+        onFailure: function( resp ) {}
     });
 
 }
@@ -333,7 +371,8 @@ function ajax_status() {
 
             clbk_populateStatus( resp );
 
-        }
+        },
+        onFailure: function( resp ) {}
     });
 
 }
@@ -356,7 +395,7 @@ function ajax_getMetrics() {
 
 
 
-var searchForm = null;
+document.querySelector( '.search form' ).addEventListener( 'submit', evt_submitSearch );
 
 document.querySelector( '.jokes p' ).textContent = localStorage.getItem( 'joke' );
 
@@ -366,4 +405,4 @@ init_data();
 
 init_jokes();
 
-init_search();
+clbk_populateSearchEngines();

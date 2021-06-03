@@ -21,7 +21,7 @@
 
             <hr>
 
-            <form class="formAddNewApplication">
+            <form class="formAddNewSearchEngine">
 
             <div class="inputText js_inputTitle">
                 <div class="body">
@@ -40,31 +40,19 @@
                         <span>Url</span>
                         <samp></samp>
                     </div>
-                    <input type="text" name="url">
+                    <input type="text" name="url" placeholder="eg: https://www.google.com/search?q=%query%">
                 </div>
                 <span class="icon delete"></span>
             </div>
 
-            <div class="inputText js_inputSubtitle">
+            <div class="inputText js_inputLetter">
                 <div class="body">
                     <div class="title">
-                        <span>Subtitle (optional)</span>
+                        <span>Letter (shortcut)</span>
                     </div>
                     <input type="text" name="subtitle">
                 </div>
                 <span class="icon delete"></span>
-            </div>
-
-            <div class="inputFile js_inputAvatar">
-                <input type="file" name="avatar">
-                <div class="body">
-                    <span class="icon upload preview"></span>
-                    <div class="title">
-                        <p>Image (optional)</p>
-                        <span>Click to upload an image</span>
-                    </div>
-                    <span class="icon delete"></span>
-                </div>
             </div>
 
             <hr>

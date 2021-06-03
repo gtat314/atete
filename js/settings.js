@@ -44,6 +44,35 @@ function ls_addApplication( avatarName ) {
 
 }
 
+function ls_addSearchEngine() {
+
+    var data = JSON.parse( localStorage.getItem( 'data' ) );
+
+    if ( typeof data.searchEngines === 'undefined' ) {
+
+        data.searchEngines = [];
+
+    }
+
+    data.searchEngines.push({
+        t:  document.querySelector( '.js_inputTitle input' ).value,
+        l:  document.querySelector( '.js_inputLetter input' ).value,
+        u:  document.querySelector( '.js_inputUrl input' ).value
+    });
+
+    ls_sync( 'data', JSON.stringify( data ) );
+
+    document.querySelector( 'form button' ).textContent = 'Success';
+    document.querySelector( 'form button' ).classList.add( 'success' );
+
+    setTimeout( function(){
+
+        window.location.href = '/settings/search.php';
+
+    }, 500);
+
+}
+
 function ls_editApplication( avatarName ) {
 
     var index = parseInt( sessionStorage.getItem( 'editApplication' ) );
@@ -87,6 +116,31 @@ function ls_editApplication( avatarName ) {
     setTimeout( function(){
 
         window.location.href = '/settings/applications.php';
+
+    }, 500);
+
+}
+
+function ls_editSearchEngine() {
+
+    var index = parseInt( sessionStorage.getItem( 'editSearchEngine' ) );
+
+    var data = JSON.parse( localStorage.getItem( 'data' ) );
+
+    data.searchEngines[ index ] = {
+        t:  document.querySelector( '.js_inputTitle input' ).value,
+        l:  document.querySelector( '.js_inputLetter input' ).value,
+        u:  document.querySelector( '.js_inputUrl input' ).value,
+    };
+
+    ls_sync( 'data', JSON.stringify( data ) );
+
+    document.querySelector( 'form button' ).textContent = 'Success';
+    document.querySelector( 'form button' ).classList.add( 'success' );
+
+    setTimeout( function(){
+
+        window.location.href = '/settings/search.php';
 
     }, 500);
 
@@ -290,6 +344,77 @@ function dom_appButton( data, index ) {
 
 }
 
+function dom_searchButton( data, index ) {
+
+    var parentElem = document.querySelector( '.searchEnginesList' );
+
+    var block = lib_createElement({
+        tag: 'DIV',
+        classes: [ 'appSettings', 'icon', 'drag' ],
+        draggable: true,
+        dataAttrs: {
+            url:        data.u,
+            title:      data.t,
+            letter:     data.l,
+            index:      index
+        },
+        listeners: [
+            {
+                type: 'click',
+                callback: evt_clickSearchEngine
+            }
+        ],
+        parent: parentElem
+    });
+
+    lib_createElement({
+        tag: 'SPAN',
+        classes: [ 'letter' ],
+        text: data.l,
+        parent: block
+    });
+
+    var info = lib_createElement({
+        tag: 'DIV',
+        classes: [ 'info' ],
+        parent: block
+    });
+
+    lib_createElement({
+        tag: 'H3',
+        text: data.t,
+        parent: info
+    });
+
+    var notes = lib_createElement({
+        tag: 'H4',
+        parent: info
+    });
+
+    lib_createElement({
+        tag: 'P',
+        text: data.u,
+        parent: notes
+    });
+
+    lib_createElement({
+        tag: 'SPAN',
+        classes: [ 'icon', 'trash' ],
+        title: 'Delete this application',
+        dataAttrs: {
+            index: index
+        },
+        listeners: [
+            {
+                type: 'click',
+                callback: evt_clickDeleteSearchEngine
+            }
+        ],
+        parent: block
+    });
+
+}
+
 function dom_editApplication() {
 
     var index = parseInt( sessionStorage.getItem( 'editApplication' ) );
@@ -316,6 +441,20 @@ function dom_editApplication() {
 
 }
 
+function dom_editSearchEngine() {
+
+    var index = parseInt( sessionStorage.getItem( 'editSearchEngine' ) );
+
+    var data = JSON.parse( localStorage.getItem( 'data' ) );
+
+    var engine = data.searchEngines[ index ];
+
+    document.querySelector( '.js_inputTitle input' ).value      = engine.t;
+    document.querySelector( '.js_inputUrl input' ).value        = engine.u;
+    document.querySelector( '.js_inputLetter input' ).value     = engine.l;
+
+}
+
 function evt_clickApplication( evt ) {
 
     if ( evt.target.classList.contains( 'trash' ) ) {
@@ -327,6 +466,20 @@ function evt_clickApplication( evt ) {
     sessionStorage.setItem( 'editApplication', evt.currentTarget.getAttribute( 'data-index' ) );
 
     window.location.href = '/settings/applicationsEdit.php';
+
+}
+
+function evt_clickSearchEngine( evt ) {
+
+    if ( evt.target.classList.contains( 'trash' ) ) {
+
+        return false;
+
+    }
+
+    sessionStorage.setItem( 'editSearchEngine', evt.currentTarget.getAttribute( 'data-index' ) );
+
+    window.location.href = '/settings/searchEdit.php';
 
 }
 
@@ -350,6 +503,30 @@ function evt_dropApplication( evt ) {
     var stored = JSON.parse( localStorage.getItem( 'data' ) );
 
     stored.applications = applicationsData;
+
+    ls_sync( 'data', JSON.stringify( stored ) );
+
+}
+
+function evt_dropSearchEngine( evt ) {
+
+    var searchEnginesData = [];
+
+    document.querySelectorAll( '.searchEnginesList .appSettings' ).forEach( function( elem ){
+
+        var engineData = {
+            t: elem.getAttribute( 'data-title' ),
+            l: elem.getAttribute( 'data-letter' ),
+            u: elem.getAttribute( 'data-url' )
+        };
+
+        searchEnginesData.push( engineData );
+
+    });
+
+    var stored = JSON.parse( localStorage.getItem( 'data' ) );
+
+    stored.searchEngines = searchEnginesData;
 
     ls_sync( 'data', JSON.stringify( stored ) );
 
@@ -385,6 +562,22 @@ function evt_submitFormNewApplication( evt ) {
 
 }
 
+function evt_submitFormNewSearchEngine( evt ) {
+
+    evt.preventDefault();
+
+    if ( dom_validateApplicationForm() === false ) {
+
+        return false;
+
+    }
+
+    evt.currentTarget.querySelector( 'button' ).textContent = 'Adding...';
+
+    ls_addSearchEngine();
+
+}
+
 function evt_submitFormEditApplication( evt ) {
 
     evt.preventDefault();
@@ -415,6 +608,22 @@ function evt_submitFormEditApplication( evt ) {
 
 }
 
+function evt_submitFormEditSearchEngine( evt ) {
+
+    evt.preventDefault();
+
+    if ( dom_validateApplicationForm() === false ) {
+
+        return false;
+
+    }
+
+    document.querySelector( '.formEditSearchEngine button' ).textContent = 'Updating...';
+
+    ls_editSearchEngine();
+
+}
+
 function evt_clickDeleteApplication( evt ) {
 
     var stored = JSON.parse( localStorage.getItem( 'data' ) );
@@ -426,6 +635,20 @@ function evt_clickDeleteApplication( evt ) {
     ls_sync( 'data', JSON.stringify( stored ) );
 
     clbk_populateApplications();
+
+}
+
+function evt_clickDeleteSearchEngine( evt ) {
+
+    var stored = JSON.parse( localStorage.getItem( 'data' ) );
+
+    var index = evt.currentTarget.getAttribute( 'data-index' );
+
+    stored.searchEngines.splice( index, 1 );
+
+    ls_sync( 'data', JSON.stringify( stored ) );
+
+    clbk_populateSearchEngines();
 
 }
 
@@ -504,6 +727,47 @@ function clbk_populateApplications() {
 
 }
 
+function clbk_populateSearchEngines() {
+
+    while( document.querySelector( '.searchEnginesList' ).firstChild ) {
+
+        document.querySelector( '.searchEnginesList' ).firstChild.remove();
+
+    }
+
+    var resp        = localStorage.getItem( 'data' );
+    var data        = JSON.parse( resp );
+    var engines     = data.searchEngines;
+    var enginesNum  = engines.length;
+
+    if ( enginesNum === 0 ) {
+
+        lib_createElement({
+            tag: 'P',
+            classes: [ 'empty' ],
+            text: 'Nothing here yet...',
+            parent: document.querySelector( '.searchEnginesList' )
+        });
+
+        return false;
+
+    }
+
+    for ( var i = 0 ; i < enginesNum ; i++ ) {
+
+        dom_searchButton( engines[ i ], i );
+
+    }
+
+    Sortable.create( divSearchEnginesList, {
+        animation: 150,
+        onEnd: function( evt ) {
+            evt_dropSearchEngine();
+        }
+    });
+
+}
+
 
 
 
@@ -526,6 +790,22 @@ ajax_getData( function( resp ){
     } else if ( document.querySelector( '.formAddNewApplication' ) ) {
 
         document.querySelector( '.formAddNewApplication' ).addEventListener( 'submit', evt_submitFormNewApplication );
+
+    } else if ( document.querySelector( '.formAddNewSearchEngine' ) ) {
+
+        document.querySelector( '.formAddNewSearchEngine' ).addEventListener( 'submit', evt_submitFormNewSearchEngine );
+
+    } else if ( document.querySelector( '.searchEnginesList' ) ) {
+
+        localStorage.setItem( 'data', resp );
+
+        clbk_populateSearchEngines();
+
+    } else if ( document.querySelector( '.formEditSearchEngine' ) ) {
+
+        dom_editSearchEngine();
+
+        document.querySelector( '.formEditSearchEngine' ).addEventListener( 'submit', evt_submitFormEditSearchEngine );
 
     }
 

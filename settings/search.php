@@ -14,8 +14,19 @@
 
         <div class="content">
 
-            <div class="maintenance">
-                <p>Coming Soon...</p>
+            <div class="pageTitle">
+                <h1>Search</h1>
+                <p>Tweak the settings for searching in the main page</p>
+            </div>
+
+            <hr>
+
+            <div class="searchEnginesList" id="divSearchEnginesList"></div>
+
+            <hr>
+
+            <div class="buttons">
+                <a href="/settings/searchAdd.php">Add New</a>
             </div>
 
         </div>

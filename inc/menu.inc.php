@@ -1,7 +1,7 @@
 <div class="sidebar">
     <div class="logo">
         <h1>Atete</h1>
-        <span>0.0.0.0.0.1 pre-alpha</span>
+        <span>0.0.2 alpha</span>
     </div>
     <hr>
     <a class="item search" href="/settings/search.php">

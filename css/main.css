@@ -108,6 +108,10 @@
 	padding: 0 0.5rem;
 }
 
+.search .searchEngines {
+	display: flex;
+}
+
 .search button {
 	background-color: rgb(41, 41, 41);
 	width: 4rem;
@@ -121,7 +125,7 @@
 	position: relative;
 }
 
-.search button:nth-child(2) {
+.search button:nth-child(1) {
 	border-left: solid 1px rgba(255, 255, 255, 0);
 }
 
@@ -142,6 +146,7 @@
 	top: 0;
 	left: 0;
 	transition: line-height 0.15s ease 0s;
+	text-transform: uppercase;
 }
 
 .search button:hover p, .search button:focus p {
@@ -160,6 +165,7 @@
 	color: rgba(255, 255, 255, 0.57);
 	opacity: 0;
 	transition: opacity 0.15s ease 0s;
+	text-transform: lowercase;
 }
 
 .search button:hover span, .search button:focus span {

@@ -4,3 +4,4 @@ logs
 data/*.json
 data/media/*.*
 !data/media/application.svg
+!data/media/index.php
